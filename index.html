@@ -104,6 +104,10 @@
 
 <div class="highlight highlight-source-go"><pre><span class="pl-smi">key</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>key name<span class="pl-pds">"</span></span>)</pre></div>
 
+<p>To check if a key exists:</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">yes</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">HasKey</span>(<span class="pl-s"><span class="pl-pds">"</span>key name<span class="pl-pds">"</span></span>)</pre></div>
+
 <p>To create a new key:</p>
 
 <div class="highlight highlight-source-go"><pre><span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">NewKey</span>(<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>value<span class="pl-pds">"</span></span>)</pre></div>
@@ -132,6 +136,14 @@
     }
     <span class="pl-k">return</span> in
 })</pre></div>
+
+<p>If you do not want any auto-transformation (such as recursive read) for the values, you can get raw value directly (this way you get much better performance):</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">val</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>key name<span class="pl-pds">"</span></span>).<span class="pl-c1">Value</span>()</pre></div>
+
+<p>To check if raw value exists:</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">yes</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">HasValue</span>(<span class="pl-s"><span class="pl-pds">"</span>test value<span class="pl-pds">"</span></span>)</pre></div>
 
 <p>To get value with types:</p>
 
