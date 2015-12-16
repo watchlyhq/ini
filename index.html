@@ -46,7 +46,14 @@
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
+<p>To use a tagged revision:</p>
+
 <pre><code>go get gopkg.in/ini.v1
+</code></pre>
+
+<p>To use with latest changes:</p>
+
+<pre><code>go get github.com/go-ini/ini
 </code></pre>
 
 <h2>
@@ -148,8 +155,8 @@
 <p>To get value with types:</p>
 
 <div class="highlight highlight-source-go"><pre><span class="pl-c">// For boolean values:</span>
-<span class="pl-c">// true when value is: 1, t, T, TRUE, true, True, YES, yes, Yes, ON, on, On</span>
-<span class="pl-c">// false when value is: 0, f, F, FALSE, false, False, NO, no, No, OFF, off, Off</span>
+<span class="pl-c">// true when value is: 1, t, T, TRUE, true, True, YES, yes, Yes, y, ON, on, On</span>
+<span class="pl-c">// false when value is: 0, f, F, FALSE, false, False, NO, no, No, n, OFF, off, Off</span>
 v, err = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>BOOL<span class="pl-pds">"</span></span>).<span class="pl-c1">Bool</span>()
 v, err = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>FLOAT64<span class="pl-pds">"</span></span>).<span class="pl-c1">Float64</span>()
 v, err = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INT<span class="pl-pds">"</span></span>).<span class="pl-c1">Int</span>()
@@ -444,7 +451,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 }
 
 <span class="pl-k">func</span> <span class="pl-en">main</span>() {
-    err = ini.<span class="pl-c1">MapToWithMapper</span>(&amp;Info{}, ini.<span class="pl-smi">TitleUnderscore</span>, []<span class="pl-k">byte</span>(<span class="pl-s"><span class="pl-pds">"</span>packag_name=ini<span class="pl-pds">"</span></span>))
+    err = ini.<span class="pl-c1">MapToWithMapper</span>(&amp;Info{}, ini.<span class="pl-smi">TitleUnderscore</span>, []<span class="pl-k">byte</span>(<span class="pl-s"><span class="pl-pds">"</span>package_name=ini<span class="pl-pds">"</span></span>))
     <span class="pl-c">// ...</span>
 
     <span class="pl-smi">cfg</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> ini.<span class="pl-c1">Load</span>([]<span class="pl-k">byte</span>(<span class="pl-s"><span class="pl-pds">"</span>PACKAGE_NAME=ini<span class="pl-pds">"</span></span>))
