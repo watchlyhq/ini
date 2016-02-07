@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="ini--" class="anchor" href="#ini--" aria-hidden="true"><span class="octicon octicon-link"></span></a>ini <a href="https://drone.io/github.com/go-ini/ini/latest"><img src="https://drone.io/github.com/go-ini/ini/status.png" alt="Build Status"></a> <a href="http://gocover.io/github.com/go-ini/ini"><img src="http://gocover.io/_badge/github.com/go-ini/ini" alt=""></a>
+<a id="ini--" class="anchor" href="#ini--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ini <a href="https://drone.io/github.com/go-ini/ini/latest"><img src="https://drone.io/github.com/go-ini/ini/status.png" alt="Build Status"></a> <a href="http://gocover.io/github.com/go-ini/ini"><img src="http://gocover.io/_badge/github.com/go-ini/ini" alt=""></a>
 </h1>
 
 <p><img src="https://avatars0.githubusercontent.com/u/10216035?v=3&amp;s=200" alt=""></p>
@@ -28,7 +28,7 @@
 <p>Package ini provides INI file read and write functionality in Go.</p>
 
 <h2>
-<a id="feature" class="anchor" href="#feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feature</h2>
+<a id="feature" class="anchor" href="#feature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature</h2>
 
 <ul>
 <li>Load multiple data sources(<code>[]byte</code> or file) with overwrites.</li>
@@ -44,7 +44,7 @@
 </ul>
 
 <h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>To use a tagged revision:</p>
 
@@ -56,11 +56,23 @@
 <pre><code>go get github.com/go-ini/ini
 </code></pre>
 
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+<p>Please add <code>-u</code> flag to update in the future.</p>
 
 <h3>
-<a id="loading-from-data-sources" class="anchor" href="#loading-from-data-sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading from data sources</h3>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>If you want to test on your machine, please apply <code>-t</code> flag:</p>
+
+<pre><code>go get -t gopkg.in/ini.v1
+</code></pre>
+
+<p>Please add <code>-u</code> flag to update in the future.</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<h3>
+<a id="loading-from-data-sources" class="anchor" href="#loading-from-data-sources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading from data sources</h3>
 
 <p>A <strong>Data Source</strong> is either raw data in type <code>[]byte</code> or a file name with type <code>string</code> and you can load <strong>as many as</strong> data sources you want. Passing other types will simply return an error.</p>
 
@@ -75,7 +87,7 @@
 <div class="highlight highlight-source-go"><pre><span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Append</span>(<span class="pl-s"><span class="pl-pds">"</span>other file<span class="pl-pds">"</span></span>, []<span class="pl-k">byte</span>(<span class="pl-s"><span class="pl-pds">"</span>other raw data<span class="pl-pds">"</span></span>))</pre></div>
 
 <h3>
-<a id="working-with-sections" class="anchor" href="#working-with-sections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with sections</h3>
+<a id="working-with-sections" class="anchor" href="#working-with-sections" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with sections</h3>
 
 <p>To get a section, you would need to:</p>
 
@@ -101,7 +113,7 @@
 <span class="pl-smi">names</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">SectionStrings</span>()</pre></div>
 
 <h3>
-<a id="working-with-keys" class="anchor" href="#working-with-keys" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with keys</h3>
+<a id="working-with-keys" class="anchor" href="#working-with-keys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with keys</h3>
 
 <p>To get a key under a section:</p>
 
@@ -129,7 +141,7 @@
 <div class="highlight highlight-source-go"><pre><span class="pl-smi">hash</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetSection</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">KeysHash</span>()</pre></div>
 
 <h3>
-<a id="working-with-values" class="anchor" href="#working-with-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with values</h3>
+<a id="working-with-values" class="anchor" href="#working-with-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with values</h3>
 
 <p>To get a string value:</p>
 
@@ -229,7 +241,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <p>That's all? Hmm, no.</p>
 
 <h4>
-<a id="helper-methods-of-working-with-values" class="anchor" href="#helper-methods-of-working-with-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper methods of working with values</h4>
+<a id="helper-methods-of-working-with-values" class="anchor" href="#helper-methods-of-working-with-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Helper methods of working with values</h4>
 
 <p>To get value with given candidates:</p>
 
@@ -254,9 +266,14 @@ vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>TIME<span class="pl-pds">"</span></span>).<span class="pl-c1">RangeTimeFormat</span>(time.<span class="pl-smi">RFC3339</span>, time.<span class="pl-c1">Now</span>(), minTime, maxTime)
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>TIME<span class="pl-pds">"</span></span>).<span class="pl-c1">RangeTime</span>(time.<span class="pl-c1">Now</span>(), minTime, maxTime) <span class="pl-c">// RFC3339</span></pre></div>
 
-<p>To auto-split value into slice:</p>
+<h5>
+<a id="auto-split-values-into-a-slice" class="anchor" href="#auto-split-values-into-a-slice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auto-split values into a slice</h5>
 
-<div class="highlight highlight-source-go"><pre>vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>STRINGS<span class="pl-pds">"</span></span>).<span class="pl-c1">Strings</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+<p>To use zero value of type for invalid inputs:</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-c">// Input: 1.1, 2.2, 3.3, 4.4 -&gt; [1.1 2.2 3.3 4.4]</span>
+<span class="pl-c">// Input: how, 2.2, are, you -&gt; [0.0 2.2 0.0 0.0]</span>
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>STRINGS<span class="pl-pds">"</span></span>).<span class="pl-c1">Strings</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>FLOAT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">Float64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INTS<span class="pl-pds">"</span></span>).<span class="pl-c1">Ints</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">Int64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
@@ -264,8 +281,30 @@ vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>UINT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">Uint64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
 vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>TIMES<span class="pl-pds">"</span></span>).<span class="pl-c1">Times</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)</pre></div>
 
+<p>To exclude invalid values out of result slice:</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-c">// Input: 1.1, 2.2, 3.3, 4.4 -&gt; [1.1 2.2 3.3 4.4]</span>
+<span class="pl-c">// Input: how, 2.2, are, you -&gt; [2.2]</span>
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>FLOAT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidFloat64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INTS<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidInts</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidInt64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>UINTS<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidUints</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>UINT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidUint64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>TIMES<span class="pl-pds">"</span></span>).<span class="pl-c1">ValidTimes</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Or to return nothing but error when have invalid inputs:</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-c">// Input: 1.1, 2.2, 3.3, 4.4 -&gt; [1.1 2.2 3.3 4.4]</span>
+<span class="pl-c">// Input: how, 2.2, are, you -&gt; error</span>
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>FLOAT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictFloat64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INTS<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictInts</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>INT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictInt64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>UINTS<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictUints</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>UINT64S<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictUint64s</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)
+vals = cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>TIMES<span class="pl-pds">"</span></span>).<span class="pl-c1">StrictTimes</span>(<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>)</pre></div>
+
 <h3>
-<a id="save-your-configuration" class="anchor" href="#save-your-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save your configuration</h3>
+<a id="save-your-configuration" class="anchor" href="#save-your-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Save your configuration</h3>
 
 <p>Finally, it's time to save your configuration to somewhere.</p>
 
@@ -282,10 +321,10 @@ cfg.<span class="pl-c1">WriteTo</span>(writer)
 cfg.<span class="pl-c1">WriteToIndent</span>(writer, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>)</pre></div>
 
 <h2>
-<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h2>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Usage</h2>
 
 <h3>
-<a id="recursive-values" class="anchor" href="#recursive-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recursive Values</h3>
+<a id="recursive-values" class="anchor" href="#recursive-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recursive Values</h3>
 
 <p>For all value of keys, there is a special syntax <code>%(&lt;name&gt;)s</code>, where <code>&lt;name&gt;</code> is the key name in same section or default section, and <code>%(&lt;name&gt;)s</code> will be replaced by corresponding value(empty string if key not found). You can use this syntax at most 99 level of recursions.</p>
 
@@ -302,7 +341,7 @@ cfg.<span class="pl-c1">WriteToIndent</span>(writer, <span class="pl-s"><span cl
 cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span>package<span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>FULL_NAME<span class="pl-pds">"</span></span>).<span class="pl-c1">String</span>()    <span class="pl-c">// github.com/go-ini/ini</span></pre></div>
 
 <h3>
-<a id="parent-child-sections" class="anchor" href="#parent-child-sections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parent-child Sections</h3>
+<a id="parent-child-sections" class="anchor" href="#parent-child-sections" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parent-child Sections</h3>
 
 <p>You can use <code>.</code> in section name to indicate parent-child relationship between two or more sections. If the key not found in the child section, library will try again on its parent section until there is no parent section.</p>
 
@@ -318,7 +357,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <div class="highlight highlight-source-go"><pre>cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span>package.sub<span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>CLONE_URL<span class="pl-pds">"</span></span>).<span class="pl-c1">String</span>()    <span class="pl-c">// https://gopkg.in/ini.v1</span></pre></div>
 
 <h3>
-<a id="auto-increment-key-names" class="anchor" href="#auto-increment-key-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto-increment Key Names</h3>
+<a id="auto-increment-key-names" class="anchor" href="#auto-increment-key-names" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auto-increment Key Names</h3>
 
 <p>If key name is <code>-</code> in data source, then it would be seen as special syntax for auto-increment key name start from 1, and every section is independent on counter.</p>
 
@@ -330,7 +369,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <div class="highlight highlight-source-go"><pre>cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span>features<span class="pl-pds">"</span></span>).<span class="pl-c1">KeyStrings</span>()    <span class="pl-c">// []{"#1", "#2", "#3"}</span></pre></div>
 
 <h3>
-<a id="map-to-struct" class="anchor" href="#map-to-struct" aria-hidden="true"><span class="octicon octicon-link"></span></a>Map To Struct</h3>
+<a id="map-to-struct" class="anchor" href="#map-to-struct" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Map To Struct</h3>
 
 <p>Want more objective way to play with INI? Cool.</p>
 
@@ -387,7 +426,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <p>It's really cool, but what's the point if you can't give me my file back from struct?</p>
 
 <h3>
-<a id="reflect-from-struct" class="anchor" href="#reflect-from-struct" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reflect From Struct</h3>
+<a id="reflect-from-struct" class="anchor" href="#reflect-from-struct" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reflect From Struct</h3>
 
 <p>Why not?</p>
 
@@ -431,7 +470,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <span class="pl-k">None</span> =</pre></div>
 
 <h4>
-<a id="name-mapper" class="anchor" href="#name-mapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Name Mapper</h4>
+<a id="name-mapper" class="anchor" href="#name-mapper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Name Mapper</h4>
 
 <p>To save your time and make your code cleaner, this library supports <a href="https://gowalker.org/gopkg.in/ini.v1#NameMapper"><code>NameMapper</code></a> between struct field and actual section and key name.</p>
 
@@ -465,7 +504,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <p>Same rules of name mapper apply to <code>ini.ReflectFromWithMapper</code> function.</p>
 
 <h4>
-<a id="other-notes-on-mapreflect" class="anchor" href="#other-notes-on-mapreflect" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other Notes On Map/Reflect</h4>
+<a id="other-notes-on-mapreflect" class="anchor" href="#other-notes-on-mapreflect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Notes On Map/Reflect</h4>
 
 <p>Any embedded struct is treated as a section by default, and there is no automatic parent-child relations in map/reflect feature:</p>
 
@@ -518,7 +557,7 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <span class="pl-k">Age</span> = 21</pre></div>
 
 <h2>
-<a id="getting-help" class="anchor" href="#getting-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Help</h2>
+<a id="getting-help" class="anchor" href="#getting-help" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Help</h2>
 
 <ul>
 <li><a href="https://gowalker.org/gopkg.in/ini.v1">API Documentation</a></li>
@@ -526,22 +565,22 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 </ul>
 
 <h2>
-<a id="faqs" class="anchor" href="#faqs" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQs</h2>
+<a id="faqs" class="anchor" href="#faqs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FAQs</h2>
 
 <h3>
-<a id="what-does-blockmode-field-do" class="anchor" href="#what-does-blockmode-field-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does <code>BlockMode</code> field do?</h3>
+<a id="what-does-blockmode-field-do" class="anchor" href="#what-does-blockmode-field-do" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What does <code>BlockMode</code> field do?</h3>
 
 <p>By default, library lets you read and write values so we need a locker to make sure your data is safe. But in cases that you are very sure about only reading data through the library, you can set <code>cfg.BlockMode = false</code> to speed up read operations about <strong>50-70%</strong> faster.</p>
 
 <h3>
-<a id="why-another-ini-library" class="anchor" href="#why-another-ini-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why another INI library?</h3>
+<a id="why-another-ini-library" class="anchor" href="#why-another-ini-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why another INI library?</h3>
 
 <p>Many people are using my another INI library <a href="https://github.com/Unknwon/goconfig">goconfig</a>, so the reason for this one is I would like to make more Go style code. Also when you set <code>cfg.BlockMode = false</code>, this one is about <strong>10-30%</strong> faster.</p>
 
 <p>To make those changes I have to confirm API broken, so it's safer to keep it in another place and start using <code>gopkg.in</code> to version my package at this time.(PS: shorter import path)</p>
 
 <h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
 
 <p>This project is under Apache v2 License. See the <a href="LICENSE">LICENSE</a> file for the full license text.</p>
 
