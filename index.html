@@ -20,12 +20,14 @@
 
     <section class="main-content">
       <h1>
-<a id="ini--" class="anchor" href="#ini--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ini <a href="https://drone.io/github.com/go-ini/ini/latest"><img src="https://drone.io/github.com/go-ini/ini/status.png" alt="Build Status"></a> <a href="http://gocover.io/github.com/go-ini/ini"><img src="http://gocover.io/_badge/github.com/go-ini/ini" alt=""></a>
+<a id="ini-" class="anchor" href="#ini-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>INI <a href="https://travis-ci.org/go-ini/ini"><img src="https://travis-ci.org/go-ini/ini.svg?branch=master" alt="Build Status"></a>
 </h1>
 
 <p><img src="https://avatars0.githubusercontent.com/u/10216035?v=3&amp;s=200" alt=""></p>
 
 <p>Package ini provides INI file read and write functionality in Go.</p>
+
+<p><a href="README_ZH.md">简体中文</a></p>
 
 <h2>
 <a id="feature" class="anchor" href="#feature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature</h2>
@@ -86,6 +88,27 @@
 
 <div class="highlight highlight-source-go"><pre><span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Append</span>(<span class="pl-s"><span class="pl-pds">"</span>other file<span class="pl-pds">"</span></span>, []<span class="pl-k">byte</span>(<span class="pl-s"><span class="pl-pds">"</span>other raw data<span class="pl-pds">"</span></span>))</pre></div>
 
+<p>If you have a list of files with possibilities that some of them may not available at the time, and you don't know exactly which ones, you can use <code>LooseLoad</code> to ignore nonexistent files without returning error.</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">cfg</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> ini.<span class="pl-c1">LooseLoad</span>(<span class="pl-s"><span class="pl-pds">"</span>filename<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>filename_404<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>When you do not care about cases of section and key names, you can use <code>InsensitiveLoad</code> to force all names to be lowercased while parsing.</p>
+
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">cfg</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> ini.<span class="pl-c1">InsensitiveLoad</span>(<span class="pl-s"><span class="pl-pds">"</span>filename<span class="pl-pds">"</span></span>)
+<span class="pl-c">//...</span>
+
+<span class="pl-c">// sec1 and sec2 are the exactly same section object</span>
+<span class="pl-smi">sec1</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetSection</span>(<span class="pl-s"><span class="pl-pds">"</span>Section<span class="pl-pds">"</span></span>)
+<span class="pl-smi">sec2</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetSection</span>(<span class="pl-s"><span class="pl-pds">"</span>SecTIOn<span class="pl-pds">"</span></span>)
+
+<span class="pl-c">// key1 and key2 are the exactly same key object</span>
+<span class="pl-smi">key1</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetKey</span>(<span class="pl-s"><span class="pl-pds">"</span>Key<span class="pl-pds">"</span></span>)
+<span class="pl-smi">key2</span>, <span class="pl-smi">err</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetKey</span>(<span class="pl-s"><span class="pl-pds">"</span>KeY<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>If you want to give more advanced load options, use <code>LoadSources</code> and take a look at <a href="https://github.com/go-ini/ini/blob/v1.16.1/ini.go#L156"><code>LoadOptions</code></a>.</p>
+
+<p>The cool thing is, whenever the file is available to load while you're calling <code>Reload</code> method, it will be counted as usual.</p>
+
 <h3>
 <a id="working-with-sections" class="anchor" href="#working-with-sections" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with sections</h3>
 
@@ -138,7 +161,7 @@
 
 <p>To get a clone hash of keys and corresponding values:</p>
 
-<div class="highlight highlight-source-go"><pre><span class="pl-smi">hash</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">GetSection</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">KeysHash</span>()</pre></div>
+<div class="highlight highlight-source-go"><pre><span class="pl-smi">hash</span> <span class="pl-k">:=</span> cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>).<span class="pl-c1">KeysHash</span>()</pre></div>
 
 <h3>
 <a id="working-with-values" class="anchor" href="#working-with-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with values</h3>
@@ -355,6 +378,11 @@ cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"
 <span class="pl-en">[package.sub]</span></pre></div>
 
 <div class="highlight highlight-source-go"><pre>cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span>package.sub<span class="pl-pds">"</span></span>).<span class="pl-c1">Key</span>(<span class="pl-s"><span class="pl-pds">"</span>CLONE_URL<span class="pl-pds">"</span></span>).<span class="pl-c1">String</span>()    <span class="pl-c">// https://gopkg.in/ini.v1</span></pre></div>
+
+<h4>
+<a id="retrieve-parent-keys-available-to-a-child-section" class="anchor" href="#retrieve-parent-keys-available-to-a-child-section" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Retrieve parent keys available to a child section</h4>
+
+<div class="highlight highlight-source-go"><pre>cfg.<span class="pl-c1">Section</span>(<span class="pl-s"><span class="pl-pds">"</span>package.sub<span class="pl-pds">"</span></span>).<span class="pl-c1">ParentKeys</span>() <span class="pl-c">// ["CLONE_URL"]</span></pre></div>
 
 <h3>
 <a id="auto-increment-key-names" class="anchor" href="#auto-increment-key-names" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auto-increment Key Names</h3>
