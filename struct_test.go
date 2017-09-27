@@ -64,6 +64,7 @@ Money = 1.25
 Born = 1993-10-07T20:17:05Z
 Duration = 2h45m
 Unsigned = 3
+GPA = 2.8
 omitthis = true
 Shadows = 1, 2
 Shadows = 3, 4
@@ -77,9 +78,6 @@ Ages = 18,19
 Populations = 12345678,98765432
 Coordinates = 192.168,10.11
 Note = Hello world!
-
-[grade]
-GPA = 2.8
 
 [foo.bar]
 Here = there
@@ -101,7 +99,16 @@ type unsupport3 struct {
 }
 
 type unsupport4 struct {
-	*unsupport3 `ini:"Others"`
+	*unsupport3
+}
+
+type meta struct {
+	Cities string
+	Note   string
+}
+
+type composite struct {
+	*meta
 }
 
 type defaultValue struct {
@@ -129,6 +136,12 @@ Cities =
 func Test_Struct(t *testing.T) {
 	Convey("Map to struct", t, func() {
 		Convey("Map file to struct", func() {
+			cfg, _ := Load([]byte(_CONF_DATA_STRUCT))
+			others, _ := cfg.GetSection("Others")
+			tmpStruct := composite{}
+			others.MapTo(&tmpStruct)
+			So(tmpStruct.Note, ShouldEqual, "Hello world!")
+
 			ts := new(testStruct)
 			So(MapTo(ts, []byte(_CONF_DATA_STRUCT)), ShouldBeNil)
 
@@ -155,6 +168,7 @@ func Test_Struct(t *testing.T) {
 			So(fmt.Sprint(ts.Others.Coordinates), ShouldEqual, "[192.168 10.11]")
 			So(ts.Others.Note, ShouldEqual, "Hello world!")
 			So(ts.testEmbeded.GPA, ShouldEqual, 2.8)
+
 		})
 
 		Convey("Map section to struct", func() {
@@ -188,7 +202,9 @@ func Test_Struct(t *testing.T) {
 			}
 			So(cfg.MapTo(&unsupport{}), ShouldNotBeNil)
 			So(cfg.MapTo(&unsupport2{}), ShouldNotBeNil)
-			So(cfg.MapTo(&unsupport4{}), ShouldNotBeNil)
+			others, _ := cfg.GetSection("Others")
+			So(others.MapTo(&unsupport4{}), ShouldNotBeNil)
+
 		})
 
 		Convey("Map to omitempty field", func() {
@@ -285,14 +301,12 @@ age=a30`))
 		var buf bytes.Buffer
 		_, err = cfg.WriteTo(&buf)
 		So(err, ShouldBeNil)
-		So(buf.String(), ShouldEqual, `NAME   = Unknwon
-Male   = true
-Age    = 21
-Height = 100
-GPA    = 2.8
-Date   = 1993-10-07T20:17:05Z
-
-[infos]
+		So(buf.String(), ShouldEqual, `NAME        = Unknwon
+Male        = true
+Age         = 21
+Height      = 100
+GPA         = 2.8
+Date        = 1993-10-07T20:17:05Z
 Dates       = 1993-10-07T20:17:05Z|1993-10-07T20:17:05Z
 Places      = HangZhou,Boston
 Years       = 1993,1994

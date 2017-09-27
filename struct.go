@@ -232,7 +232,6 @@ func (s *Section) mapTo(val reflect.Value, isStrict bool) error {
 	for i := 0; i < typ.NumField(); i++ {
 		field := val.Field(i)
 		tpField := typ.Field(i)
-
 		tag := tpField.Tag.Get("ini")
 		if tag == "-" {
 			continue
@@ -247,10 +246,13 @@ func (s *Section) mapTo(val reflect.Value, isStrict bool) error {
 		isAnonymous := tpField.Type.Kind() == reflect.Ptr && tpField.Anonymous
 		isStruct := tpField.Type.Kind() == reflect.Struct
 		if isAnonymous {
+			// anonymous fields are treated as extensions of the struct, not as different keys
 			field.Set(reflect.New(tpField.Type.Elem()))
-		}
-
-		if isAnonymous || isStruct {
+			if err := s.mapTo(field, isStrict); err != nil {
+				return err
+			}
+			continue
+		} else if isStruct {
 			if sec, err := s.f.GetSection(fieldName); err == nil {
 				if err = sec.mapTo(field, isStrict); err != nil {
 					return fmt.Errorf("error mapping field(%s): %v", fieldName, err)
@@ -303,13 +305,13 @@ func (f *File) MapTo(v interface{}) error {
 	return f.Section("").MapTo(v)
 }
 
-// MapTo maps file to given struct in strict mode,
+// StrictMapTo maps file to given struct in strict mode,
 // which returns all possible error including value parsing error.
 func (f *File) StrictMapTo(v interface{}) error {
 	return f.Section("").StrictMapTo(v)
 }
 
-// MapTo maps data sources to given struct with name mapper.
+// MapToWithMapper maps data sources to given struct with name mapper.
 func MapToWithMapper(v interface{}, mapper NameMapper, source interface{}, others ...interface{}) error {
 	cfg, err := Load(source, others...)
 	if err != nil {
@@ -442,8 +444,13 @@ func (s *Section) reflectFrom(val reflect.Value) error {
 			continue
 		}
 
-		if (tpField.Type.Kind() == reflect.Ptr && tpField.Anonymous) ||
-			(tpField.Type.Kind() == reflect.Struct && tpField.Type.Name() != "Time") {
+		if tpField.Type.Kind() == reflect.Ptr && tpField.Anonymous {
+			// Anonymous struct fields are treated as extensions of the structure, not as other keys
+			err := s.reflectFrom(field)
+			return err
+		}
+
+		if tpField.Type.Kind() == reflect.Struct && tpField.Type.Name() != "Time" {
 			// Note: The only error here is section doesn't exist.
 			sec, err := s.f.GetSection(fieldName)
 			if err != nil {
@@ -488,7 +495,7 @@ func (f *File) ReflectFrom(v interface{}) error {
 	return f.Section("").ReflectFrom(v)
 }
 
-// ReflectFrom reflects data sources from given struct with name mapper.
+// ReflectFromWithMapper reflects data sources from given struct with name mapper.
 func ReflectFromWithMapper(cfg *File, v interface{}, mapper NameMapper) error {
 	cfg.NameMapper = mapper
 	return cfg.ReflectFrom(v)
